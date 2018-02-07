@@ -33,6 +33,7 @@ for csv_file in list_of_files:
 total_votes= len(candidates)           
 votes_per_candidate = Counter(candidates)
 percentage_per_candidate = {}
+
 for key in votes_per_candidate.keys():
     percentage_per_candidate[key] = (votes_per_candidate[key] / total_votes) * 100
 
@@ -41,7 +42,7 @@ print("-" * 15)
 print("Total Votes : "+str(total_votes))
 print("-" * 15)
 
-for key,value in votes_per_candidate.items:
+for key,value in votes_per_candidate.items():
     print("{}: {}% ({})".format(key,percentage_per_candidate[key],value))
 
 

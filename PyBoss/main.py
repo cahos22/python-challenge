@@ -60,18 +60,19 @@ file_list=['employee_data1.csv', 'employee_data2.csv']
 
 #file_list=['employee_data1.csv','employee_data2.csv']
 output_file_path = os.path.join('output', 'employee_data_final.csv')
-with open(output_file_path, 'w') as output_data:
+with open(output_file_path, 'w', newline='') as output_data:
     field_names=['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State']
     dict_writer=csv.DictWriter(output_data,fieldnames=field_names)
     dict_writer.writeheader()
 
     for data_file in file_list:    
-        file_path = os.path.join('raw-data',data_file)
+        file_path = os.path.join('raw_data',data_file)
         
-        with open(file_path,'r') as input_data:
+        with open(file_path,'r',newline='') as input_data:
 
-            dictReader=csv.DictReader(input_data)
+            dictReader = csv.DictReader(input_data)
             for record in dictReader:
+                w_record = {}
                 w_record['Emp ID'] = record['Emp ID']
                 full_name = str(record['Name']).split(' ')
                 w_record['First Name'] = full_name[0]
