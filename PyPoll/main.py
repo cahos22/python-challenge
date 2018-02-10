@@ -5,6 +5,7 @@ import csv
 from collections import defaultdict
 from collections import Counter
 
+file_to_output = "results/election_results.txt"
 list_of_files=["election_data_1.csv","election_data_2.csv"]
 
 # # Method 1: Plain Reading of CSVs
@@ -33,9 +34,17 @@ for csv_file in list_of_files:
 total_votes= len(candidates)           
 votes_per_candidate = Counter(candidates)
 percentage_per_candidate = {}
+winning_count= 0
+winner_candidate=""
 
 for key in votes_per_candidate.keys():
+    # Calculating percentage per candidate
     percentage_per_candidate[key] = (votes_per_candidate[key] / total_votes) * 100
+    #setting winner and winner votes
+    if (votes_per_candidate[key] > winning_count):
+        winner_candidate = key
+        winning_count = votes_per_candidate[key]
+        
 
 print("Election Results")
 print("-" * 15)
@@ -45,5 +54,7 @@ print("-" * 15)
 for key,value in votes_per_candidate.items():
     print("{}: {}% ({})".format(key,percentage_per_candidate[key],value))
 
+print("-" * 15)
+print("Winner: {} with {} votes".format(winner_candidate,winning_count))
 
 
